@@ -1,0 +1,47 @@
+$schema: http://json-schema.org/draft-07/schema#
+$id: https://natlan.org/schemas/project-settings.schema.json
+title: NatLan Project Settings
+description: Schema for natlan.toml project configuration file
+type: object
+properties:
+  docs:
+    type: object
+    description: Configuration for documentation processing
+    properties:
+      glob:
+        type: array
+        description: Glob patterns to match or exclude documentation files. Patterns starting with '!' are exclusions
+        items:
+          type: string
+      handlers:
+        type: object
+        description: Custom handlers for documentation file types
+        additionalProperties:
+          type: object
+          description: Handler configuration for a specific file type
+          properties:
+            matcher:
+              type: string
+              description: Pattern to match files that should use this handler
+            path:
+              type: string
+              description: Path to the handler implementation
+      linting:
+        type: object
+        description: Linting rules for documentation
+        properties:
+          rules:
+            type: object
+            description: Linting rules grouped by severity
+            properties:
+              warnings:
+                type: array
+                description: Rules that produce a warning, described in plain English
+                items:
+                  type: string
+              errors:
+                type: array
+                description: Rules that produce an error, described in plain English
+                items:
+                  type: string
+            additionalProperties: false

@@ -1,22 +1,22 @@
 # Project Settings
 
-## Location
-
-The project settings are stored in a natlan.yml file.
+NatLan Project settings are stored in a file named `natlan.toml` that indicates this folder is
+a Natlan project.
 
 ## Docs
 
-The settings includes how to manage documentation files.
+The `docs` section of the project settings is used to configure documentation.
 
 ### Glob
 
 The pattern to match or exclude documentation files can be defined as:
 
-```yaml
-docs:
-  glob:
-    - "docs/**/*.md"
-    - "!docs/api/**/*.md"
+```toml
+[docs]
+glob = [
+    "!docs/LICENSE.md",
+    "docs/**/*.md",
+]
 ```
 
 ### Handlers
@@ -31,10 +31,10 @@ TODO plugin system on how to read certain types of files e.g.: markdown, docx, d
 ### Linting
 
 TODO:
-- Define linting rules such as:
-  - Whether to check grammatical errors
-  - Any open-ended rules such as terminology, flow, formats etc...
+- Define linting rules in plain english, e.g.:
+  - Warn on grammatical errors
+  - Error on wrong terminology, flow, formats etc...
 
 ## Schema
 
-The JSON schema for the project settings is [located here](./project-settings.schema.yaml).
+The JSON Schema for the project settings is [located here](./project-settings.schema.yaml).

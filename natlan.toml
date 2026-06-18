@@ -1,0 +1,16 @@
+#:schema = ./docs/compiler/project-settings.schema.yaml
+
+[docs]
+glob = [
+    "docs/**/*.md",
+    "docs/**/*.yaml",
+]
+
+[docs.linting.rules]
+warnings = [
+    "Grammatical errors and spelling mistakes",
+]
+errors = [
+    "Deprecated terminology like 'master/slave'",
+    "Unimplemented or TODO sections",
+]
