@@ -41,6 +41,47 @@ Imagine requirements doc and UML diagrams as a programming language.
 
 ## Architecture
 
+```mermaid
+graph TD;
+  User(["User"]);
+  IDEs(["IDEs"]);
+  Agents(["Coding Agents"]);
+
+  subgraph Frontends
+    CLI[CLI];
+    LSP[Language Server];
+    MCP[MCP Server];
+  end
+
+  Compiler[["Compiler<br/>(Rust library)"]];
+  Docs[/"Documentation<br/>(Natural Language)"/];
+  Artifacts[("Build Artifacts<br/>(machine-readable)")];
+
+  subgraph Usages
+    PM[Project Management];
+    CodeGen[Code Generation];
+    TestGen[Test Generation];
+  end
+
+  User --> CLI;
+  IDEs --> LSP;
+  Agents --> MCP;
+
+  CLI --> Compiler;
+  LSP --> Compiler;
+  MCP --> Compiler;
+
+  Docs --> Compiler;
+  Compiler --> Artifacts;
+
+  CLI --> Usages;
+  MCP --> Usages;
+
+  Artifacts --> CodeGen;
+  Artifacts --> TestGen;
+  Artifacts --> PM;
+```
+
 ### Landing page
 
 TODO natlan.org
@@ -49,13 +90,31 @@ TODO natlan.org
 
 [See More](./compiler.md#compiler)
 
+### Frontends
+
+- [CLI](./cli.md#cli)
+- [Language Server](./lsp.md#language-server)
+- [MCP Server](./mcp.md#mcp)
+
 ### Usages
 
-TODO
-- new codebases:
-    - Code generation and updates to it (with migration)
-- existing/new codebases:
-  - Unit/Integration/Cucumber tests tied to requirements
-  - LLM-driven tests (Run LLM given a requirement from doc and have it assert the code is correct)
-  - Feed back implementation back into docs
-    (e.g. background color was never defined, but the implementation made it blue so let's persist it)
+### Frontends
+
+- [Project Management](./pm.md#project-management)
+- [Code Generation](./codegen.md#code-generation)
+- [Test Generation](./testgen.md#test-generation)
+- [Documentation Generation](./docsgen.md#documentation-generation)
+
+---
+# Scratch space
+
+TODO Project Management:
+- Tracking and planning of work
+TODO Code generation:
+- Code generation and updates to it (with migration)
+TODO Testing:
+- Unit/Integration/Cucumber tests tied to requirements
+- LLM-driven tests (Run LLM given a requirement from doc and have it assert the code is correct)
+TODO Others:
+- Feed back implementation back into docs
+  (e.g. background color was never defined, but the implementation made it blue so let's persist it)

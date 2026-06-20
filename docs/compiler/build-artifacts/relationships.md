@@ -6,7 +6,7 @@ Any section in documentation can be related to another section.
 
 Several relationship types are supported and their relative strength from strongest to weakest is:
 
-Generalization → Realization → Composition → Aggregation → Association → Dependency
+Generalization → Realization → Composition → Aggregation → Association → Dependency -> Reference
 
 ### Inheritance family
 
@@ -28,7 +28,7 @@ You are part of another and owned by that another. (e.g. a House is composed of 
 
 #### Aggregation
 
-You are part of another and maye be shared by others. (e.g. a Driver is part of a Car, but Driver can exist without it
+You are part of another and may be shared by others. (e.g. a Driver is part of a Car, but Driver can exist without it
 or be part of multiple Cars)
 
 ### Link family
@@ -42,6 +42,12 @@ a student is associated with a course)
 
 Connection that tends to be temporary and/or optional. An object is given a temporary reference via method parameter
 (e.g. CreditCard depends on FraudDetection)
+
+#### Reference
+
+A cross-reference whose semantics have not yet been defined. Simply a pointer from one section to another.
+When documents are first discovered, files pointing to other files and subsections within sections are both
+references.
 
 ## Cardinality
 

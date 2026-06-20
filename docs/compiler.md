@@ -2,18 +2,12 @@
 
 ## Overview
 
-TODO
+A natural language compiler produces a programmatically readable format of documentation. It resolves
+ambiguity, open-endedness, and contradictions in the usage of natural language.
+
+This compiler is exposed as a Rust module that can be used in a e.g. CLI or Language Server.
 
 ## Design
-
-### Invocation
-
-The compiler can be invoked in a number of ways.
-
-TODO CLI
-TODO Language Server
-TODO MCP
-TODO IDE extensions
 
 ### Project settings
 

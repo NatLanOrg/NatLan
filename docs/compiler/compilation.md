@@ -26,6 +26,8 @@ TODO:
 
 ## Step 2: Parse documentation
 
+See [Docs Parser](./compilation/docs-parser.md#documentation-parser)
+
 TODO:
 - Find all documentation files based on glob
 - Parse documentation files with built-in or custom handlers
