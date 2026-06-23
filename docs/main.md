@@ -1,5 +1,5 @@
-# Natlan
-https://natlan.org
+# Jazyk
+https://jazyk.org
 
 **Nat**ural **Lan**gauge as a programming language.
 
@@ -58,9 +58,10 @@ graph TD;
   Artifacts[("Build Artifacts<br/>(machine-readable)")];
 
   subgraph Usages
-    PM[Project Management];
     CodeGen[Code Generation];
     TestGen[Test Generation];
+    PM[Project Management];
+    DocsGen[Docs feedback];
   end
 
   User --> CLI;
@@ -77,44 +78,40 @@ graph TD;
   CLI --> Usages;
   MCP --> Usages;
 
-  Artifacts --> CodeGen;
-  Artifacts --> TestGen;
-  Artifacts --> PM;
+  Artifacts <--> CodeGen;
+  Artifacts <--> TestGen;
+  Artifacts <--> PM;
+  Artifacts <--> DocsGen;
 ```
 
-### Landing page
+### Site
 
-TODO natlan.org
+The project's public site is hosted at [jazyk.org](https://jazyk.org).
+
+[See More](./site.md)
 
 ### Compiler
 
-[See More](./compiler.md#compiler)
+The compiler is the core of this project, a library that turns natural-language documentation into
+machine-readable [build artifacts](./compiler/artifacts.md#build-artifacts), surfacing
+ambiguity, open-endedness, and contradictions along the way.
+
+[See More](./compiler.md)
 
 ### Frontends
 
-- [CLI](./cli.md#cli)
-- [Language Server](./lsp.md#language-server)
-- [MCP Server](./mcp.md#mcp)
+Frontends embed the compiler and expose it for different consumers.
 
-### Usages
+- [CLI](./cli.md)
+- [Language Server](./lsp.md)
+- [MCP Server](./mcp.md)
 
-### Frontends
+### Consumers
 
-- [Project Management](./pm.md#project-management)
-- [Code Generation](./codegen.md#code-generation)
-- [Test Generation](./testgen.md#test-generation)
-- [Documentation Generation](./docsgen.md#documentation-generation)
+Usages consume the build artifacts to do useful work downstream.
 
----
-# Scratch space
-
-TODO Project Management:
-- Tracking and planning of work
-TODO Code generation:
-- Code generation and updates to it (with migration)
-TODO Testing:
-- Unit/Integration/Cucumber tests tied to requirements
-- LLM-driven tests (Run LLM given a requirement from doc and have it assert the code is correct)
-TODO Others:
-- Feed back implementation back into docs
-  (e.g. background color was never defined, but the implementation made it blue so let's persist it)
+- [Project Management](./pm.md)
+- [Code Generation](./codegen.md)
+- [Test Generation](./testgen.md)
+- [LLM Static Analysis](./llm-test.md)
+- [Documentation Generation](./docsgen.md)
