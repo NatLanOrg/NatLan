@@ -27,3 +27,19 @@ Show a diagram outlining the Jazyk architecture:
   - Code generation
   - Test generation
   - LLM Static Analysis
+
+### Pipeline
+
+Describe compilation, transforming to IR, a graph of requirements.
+
+Describe code generation, test generation, and LLM static analysis.
+
+### Changes to requirements
+
+Describe how changes to requirements are reflected in the underlying code.
+
+### IDE Language Support
+
+Describe how LSP integrates with IDE to surface usages, compilation warn/error.
+
+Show example warnings of contradictions across files,
