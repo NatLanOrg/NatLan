@@ -88,7 +88,7 @@ graph TD;
 
 The project's public site is hosted at [jazyk.org](https://jazyk.org).
 
-[See More](./site.md)
+[See More](./site/site.md)
 
 ### Compiler
 
@@ -96,14 +96,21 @@ The compiler is the core of this project, a library that turns natural-language 
 machine-readable [build artifacts](./compiler/artifacts.md#build-artifacts), surfacing
 ambiguity, open-endedness, and contradictions along the way.
 
-[See More](./compiler.md)
+[See More](./compiler/compiler.md)
+
+### Benchmark
+
+To validate whether a particular LLM is sufficient to power compilation, a benchmark is created
+to give an estimate of the model.
+
+[See More](./benchmark/benchmark.md)
 
 ### Frontends
 
 Frontends embed the compiler and expose it for different consumers.
 
 - [CLI](./cli.md)
-- [Language Server](./lsp.md)
+- [Language Server](./lsp/lsp.md)
 - [MCP Server](./mcp.md)
 
 ### Consumers
