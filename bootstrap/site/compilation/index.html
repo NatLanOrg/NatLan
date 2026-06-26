@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jazyk compiler and linker</title>
+  <meta name="description" content="The phases of Jazyk compilation and linking, powered by LLM." />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { brand: '#37bd99', accent: '#d81b60' } } }
+    }
+  </script>
+</head>
+<body class="bg-white text-slate-800 antialiased">
+  <header class="border-b border-slate-200">
+    <nav class="mx-auto max-w-5xl px-6 py-4 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2 font-semibold text-slate-900">
+        <img src="/favicon.svg" alt="" class="h-7 w-7" />
+        Jazyk
+      </a>
+      <div class="flex items-center gap-6 text-sm">
+        <a href="/compilation/" class="text-brand">Compilation</a>
+        <a href="/artifact/" class="hover:text-brand">Artifacts</a>
+        <a href="https://github.com/JazykOrg/Jazyk" class="hover:text-brand">GitHub</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="mx-auto max-w-3xl px-6 py-16 text-center">
+      <h1 class="text-4xl font-bold tracking-tight text-slate-900">Jazyk compiler and linker</h1>
+      <p class="mt-3 text-lg text-slate-600">Phases of compilation and linking powered by LLM</p>
+    </section>
+
+    <section class="mx-auto max-w-3xl px-6 pb-12">
+      <h2 class="text-2xl font-bold text-slate-900">Compiler</h2>
+      <p class="mt-3 text-slate-600">Each file compiles on its own, in parallel, producing one object artifact. Deterministic steps frame the document; LLM steps read the prose.</p>
+
+      <ol class="mt-6 space-y-4">
+        <li class="rounded-lg border border-slate-200 p-5">
+          <div class="flex items-baseline gap-3">
+            <span class="font-mono text-sm text-brand">A1</span>
+            <span class="font-semibold text-slate-900">Parse sections</span>
+            <span class="ml-auto rounded bg-slate-100 px-2 py-0.5 text-xs text-slate-500">deterministic</span>
+          </div>
+          <p class="mt-2 text-sm text-slate-600">Markdown to a section tree. Sections hold verbatim text so the document can be reconstructed.</p>
+        </li>
+        <li class="rounded-lg border border-slate-200 p-5">
+          <div class="flex items-baseline gap-3">
+            <span class="font-mono text-sm text-brand">A2</span>
+            <span class="font-semibold text-slate-900">Extract entities</span>
+            <span class="ml-auto rounded bg-brand/10 px-2 py-0.5 text-xs text-brand">LLM</span>
+          </div>
+          <p class="mt-2 text-sm text-slate-600">Identify the domain concepts a file names. Each entity gets a stable id, a scope, and an internal or external mark.</p>
+        </li>
+        <li class="rounded-lg border border-slate-200 p-5">
+          <div class="flex items-baseline gap-3">
+            <span class="font-mono text-sm text-brand">A3</span>
+            <span class="font-semibold text-slate-900">Extract requirements</span>
+            <span class="ml-auto rounded bg-brand/10 px-2 py-0.5 text-xs text-brand">LLM</span>
+          </div>
+          <p class="mt-2 text-sm text-slate-600">Read each statement as an EARS requirement attached to its entities, and capture the typed edges the statement implies.</p>
+        </li>
+        <li class="rounded-lg border border-slate-200 p-5">
+          <div class="flex items-baseline gap-3">
+            <span class="font-mono text-sm text-brand">A4</span>
+            <span class="font-semibold text-slate-900">Consolidate relationships</span>
+            <span class="ml-auto rounded bg-slate-100 px-2 py-0.5 text-xs text-slate-500">deterministic</span>
+          </div>
+          <p class="mt-2 text-sm text-slate-600">Reify the edges into relationships, deduplicate, and promote weak references to stronger UML types where the requirements warrant it.</p>
+        </li>
+        <li class="rounded-lg border border-slate-200 p-5">
+          <div class="flex items-baseline gap-3">
+            <span class="font-mono text-sm text-brand">A5</span>
+            <span class="font-semibold text-slate-900">Local definitions</span>
+            <span class="ml-auto rounded bg-brand/10 px-2 py-0.5 text-xs text-brand">LLM</span>
+          </div>
+          <p class="mt-2 text-sm text-slate-600">Assemble each entity's definition from the requirements within the file. The result is one object artifact, the translation unit.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="mx-auto max-w-3xl px-6 pb-20">
+      <h2 class="text-2xl font-bold text-slate-900">Linker</h2>
+      <p class="mt-3 text-slate-600">The linker takes every object artifact and resolves the program as a whole. Resolution is conservative and deterministic; semantic judgment is deferred to the validate steps.</p>
+
+      <ol class="mt-6 space-y-4">
+        <li class="rounded-lg border border-slate-200 p-5">
+          <div class="flex items-baseline gap-3">
+            <span class="font-mono text-sm text-accent">L1</span>
+            <span class="font-semibold text-slate-900">Load link interfaces</span>
+            <span class="ml-auto rounded bg-slate-100 px-2 py-0.5 text-xs text-slate-500">deterministic</span>
+          </div>
+          <p class="mt-2 text-sm text-slate-600">Read the entities and relationships each object artifact exports.</p>
+        </li>
+        <li class="rounded-lg border border-slate-200 p-5">
+          <div class="flex items-baseline gap-3">
+            <span class="font-mono text-sm text-accent">L2</span>
+            <span class="font-semibold text-slate-900">Resolve entities</span>
+            <span class="ml-auto rounded bg-slate-100 px-2 py-0.5 text-xs text-slate-500">deterministic</span>
+          </div>
+          <p class="mt-2 text-sm text-slate-600">Match entities across files by explicit link, then by exact name. No fuzzy matching. An unresolved reference is a <span class="font-mono text-xs">missing-link</span>.</p>
+        </li>
+        <li class="rounded-lg border border-slate-200 p-5">
+          <div class="flex items-baseline gap-3">
+            <span class="font-mono text-sm text-accent">L3</span>
+            <span class="font-semibold text-slate-900">Merge relationships</span>
+            <span class="ml-auto rounded bg-slate-100 px-2 py-0.5 text-xs text-slate-500">deterministic</span>
+          </div>
+          <p class="mt-2 text-sm text-slate-600">Combine the edges from every file onto the resolved entities. Produces the linked artifact.</p>
+        </li>
+        <li class="rounded-lg border border-slate-200 p-5">
+          <div class="flex items-baseline gap-3">
+            <span class="font-mono text-sm text-accent">L4</span>
+            <span class="font-semibold text-slate-900">Synthesize definitions</span>
+            <span class="ml-auto rounded bg-brand/10 px-2 py-0.5 text-xs text-brand">LLM</span>
+          </div>
+          <p class="mt-2 text-sm text-slate-600">Write one coherent definition per entity from all merged requirements. Synthesizing it is itself the test of whether a merge was valid; a clash splits into a <span class="font-mono text-xs">false-merge</span>.</p>
+        </li>
+        <li class="rounded-lg border border-slate-200 p-5">
+          <div class="flex items-baseline gap-3">
+            <span class="font-mono text-sm text-accent">L5</span>
+            <span class="font-semibold text-slate-900">Semantic review</span>
+            <span class="ml-auto rounded bg-brand/10 px-2 py-0.5 text-xs text-brand">LLM</span>
+          </div>
+          <p class="mt-2 text-sm text-slate-600">Read across documents for contradictions, ambiguity, and incompleteness, and record them as diagnostics with reasoning.</p>
+        </li>
+        <li class="rounded-lg border border-slate-200 p-5">
+          <div class="flex items-baseline gap-3">
+            <span class="font-mono text-sm text-accent">L6</span>
+            <span class="font-semibold text-slate-900">Spec-lint, coverage, reachability</span>
+            <span class="ml-auto rounded bg-slate-100 px-2 py-0.5 text-xs text-slate-500">deterministic</span>
+          </div>
+          <p class="mt-2 text-sm text-slate-600">Run the structural checks over the linked graph. Produces the reviewed artifact and the combined diagnostics.</p>
+        </li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200">
+    <div class="mx-auto max-w-5xl px-6 py-8 text-sm text-slate-500 flex items-center justify-between">
+      <span>Jazyk — tongue, in Slavic languages.</span>
+      <a href="https://github.com/JazykOrg/Jazyk" class="hover:text-brand">github.com/JazykOrg/Jazyk</a>
+    </div>
+  </footer>
+</body>
+</html>
