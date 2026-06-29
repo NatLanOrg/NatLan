@@ -106,6 +106,22 @@ The effective LLM settings are resolved per field, highest priority first:
 4. Project `[llm]` — `jazyk.toml`.
 5. Built-in defaults.
 
+## Tuning
+
+A few operational knobs are environment variables only, since they tune a single run rather than the
+project:
+
+- `JAZYK_MAX_CONCURRENCY` — cap on concurrent in-flight LLM requests (default `6`). A local model
+  serializes work, so a high value gains nothing and can trigger gateway errors.
+- `JAZYK_MAX_RETRIES` — retries (in addition to the first attempt) for a failed LLM call (default
+  `2`). See [retries](./concepts/determinism.md#retries).
+- `JAZYK_TEMPERATURE` — sampling temperature (default `0` for deterministic builds). A negative value
+  omits the field for models that only accept their default.
+- `JAZYK_VERBOSE` — when set to a non-empty value other than `0`, log every LLM call as it runs: the
+  file and stage (or the linked entity) it serves, its outcome, and its duration. Useful for seeing
+  what is actually being compiled and linked through a slow model. `jazyk build` and `jazyk watch`
+  enable it by default; set `JAZYK_VERBOSE=1` to enable it for `jazyk lsp` and `jazyk mcp` too.
+
 ## Roots
 
 Roots are the entry-point files for reachability. Every entity defined in a root file is a root

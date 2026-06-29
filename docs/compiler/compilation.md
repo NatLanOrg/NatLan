@@ -13,7 +13,8 @@ resolves across files.
 
 - Per file. One file in, one object artifact out.
 - Parallel. Files do not depend on each other during compilation.
-- Cacheable. The phase is keyed by the file content hash. An unchanged file is not recompiled.
+- Cacheable. Each step is keyed and cached in its [stage file](./artifacts.md#storage-layout). An
+  unchanged file is not recompiled; a changed file reruns only the stages whose inputs changed.
 - Small scope. Each step gives the LLM the smallest input that works (one section, or one entity),
   never the whole project. Narrow inputs are more reliable, see [main](../main.md).
 

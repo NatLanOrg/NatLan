@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "jazyk": {
+      "command": "bootstrap/target/release/jazyk",
+      "args": ["mcp"]
+    }
+  }
+}

@@ -22,11 +22,19 @@ welcome message points the client at the project root in use and summarizes the 
 Compilation:
 
 - `compile` runs [compilation](./compiler/compilation.md#compilation) and
-  [linking](./compiler/linking.md#linking) and returns warnings and errors.
+  [linking](./compiler/linking.md#linking), persists the resulting artifacts to the out directory, and
+  returns warnings and errors. This is the only tool that runs the compiler.
 - `diagnostics` lists the [diagnostics](./compiler/model/diagnostic.md#diagnostic) from the latest
   build, optionally filtered to a file or entity.
 
 Graph exploration:
+
+The `diagnostics` and graph exploration tools read the latest persisted build from the out directory
+(the [build artifacts](./compiler/artifacts.md#build-artifacts)). They never recompile. If no build
+exists yet, they return an error pointing at `compile` (or `jazyk build`). Compilation runs once,
+exploration is pure lookup. A running [LSP server](./lsp/lifecycle.md#persisted-output) writes those
+same finals after each completed build, so when an editor is open the MCP tools track its build without
+calling `compile`.
 
 - `get_entity` fetches an [entity](./compiler/model/entity.md#entity): its definition, requirements,
   and relationships.

@@ -1,0 +1,71 @@
+$schema: http://json-schema.org/draft-07/schema#
+$id: https://jazyk.org/schemas/benchmark-case.schema.json
+title: Jazyk Benchmark Case
+description: >-
+  A single benchmark case: a predefined input fed to one LLM stage of the compiler, and the
+  expectations its output must meet. Embedded as a yaml block in a case file under cases/
+type: object
+required:
+  - stage
+  - input
+  - expect
+properties:
+  stage:
+    description: The LLM-invoking stage under test
+    type: string
+    enum: [A2, A3, A4, L4, L5]
+  input:
+    description: >-
+      The predefined input for the stage, shaped as the stage receives it during a build. For A2 a
+      whole document; for A3 a section plus an entity list; for A4 the candidate edges for one pair;
+      for L4 an entity's local definitions; for L5 an entity's requirements across documents
+    type: object
+  expect:
+    description: The checks the stage output must pass
+    type: object
+    properties:
+      schema:
+        description: The output shape the stage must produce
+        type: string
+        enum: [entities, requirements, relationship, synthesis, diagnostics]
+      assertions:
+        description: Deterministic expectations about the output
+        type: array
+        items:
+          type: object
+          required: [kind]
+          properties:
+            kind:
+              type: string
+              enum: [presence, field, substring]
+            path:
+              description: Where in the output the assertion applies
+              type: string
+            value:
+              description: The expected value or substring
+            note:
+              description: Human explanation of what this assertion checks
+              type: string
+      judge:
+        description: Rubric for the model to grade its own free-text output
+        type: object
+        required: [rubric, threshold]
+        properties:
+          rubric:
+            description: What good output looks like, in plain language
+            type: string
+          threshold:
+            description: Minimum judge sub-score for the case to be considered good
+            type: number
+            minimum: 0
+            maximum: 1
+      mustEmit:
+        description: Diagnostic rules that must appear in the output
+        type: array
+        items:
+          type: string
+      mustNotEmit:
+        description: Diagnostic rules that must not appear in the output
+        type: array
+        items:
+          type: string
